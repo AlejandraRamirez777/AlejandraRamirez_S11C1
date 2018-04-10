@@ -41,7 +41,7 @@ int main () {
    for (int i = 2; i < N; i++) {
        II[i] = II[i-2] + 2*h*func_primeI(II[i-1],ss[i-1],B1,g1);
        ss[i] = ss[i-2] + 2*h*func_primeS(II[i-1],ss[i-1],B1);
-       cout << II[i] << "," << ss[i] << endl;
+       cout << II[i] << "," << i << endl;
     
    }
 

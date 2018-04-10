@@ -20,7 +20,7 @@ int main () {
    //Variables leap-frog
    double h = 0.01;
    double min_x = 0.0;
-   double max_x = Nt;
+   double max_x = 4.0;
    int N = int((max_x-min_x)/h);
 
    //Arrays de ceros
@@ -41,6 +41,8 @@ int main () {
    for (int i = 2; i < N; i++) {
        II[i] = II[i-2] + 2*h*func_primeI(II[i-1],ss[i-1],B1,g1);
        ss[i] = ss[i-2] + 2*h*func_primeS(II[i-1],ss[i-1],B1);
+       cout << II[i] << "," << ss[i] << endl;
+    
    }
 
 

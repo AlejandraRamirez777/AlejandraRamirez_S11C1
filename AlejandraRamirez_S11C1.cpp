@@ -20,6 +20,25 @@ int main () {
    double max_x = 4.0;
    int N = int((max_x-min_x)/h);
 
+   //Arrays de ceros
+   double xx[N];
+   double yy[N];
+   
+   for (int i = 0; i < N; i++) {
+       xx[i] = 0;
+       yy[i] = 0;
+   }
+
+   xx[0] = min_x;
+   yy[0] = 1.0;
+
+   for (int i = 2; i < N; i++) {
+       xx[i] = xx[i-1] + h;
+       yy[i] = yy[i-2] + 2*h*func_prime(xx[i-1],yy[i-1]);
+   }
+
+
+
    return 0;
 }
 

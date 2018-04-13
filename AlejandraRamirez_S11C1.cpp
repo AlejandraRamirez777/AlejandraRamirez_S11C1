@@ -24,28 +24,65 @@ int main () {
    int N = int((max_x-min_x)/h);
 
    //Arrays de ceros
-   double ss[N];
-   double II[N];
+   double ss1[N];
+   double II1[N];
    
    for (int i = 0; i < N; i++) {
-       ss[i] = 0;
-       II[i] = 0;
+       ss1[i] = 0;
+       II1[i] = 0;
    }
 
-   II[0] = I0;
-   ss[0] = s0;
+   double IM1 = 0;
+    double T1 = 0; 
 
-   II[1] = II[0] + h*func_primeI(II[0],ss[0],B1,g1);
-   ss[1] = ss[0] + h*func_primeS(II[0],ss[0],B1);
+   II1[0] = I0;
+   ss1[0] = s0;
+
+   II1[1] = II1[0] + h*func_primeI(II1[0],ss1[0],B1,g1);
+   ss1[1] = ss1[0] + h*func_primeS(II1[0],ss1[0],B1);
 
    for (int i = 2; i < N; i++) {
-       II[i] = II[i-2] + 2*h*func_primeI(II[i-1],ss[i-1],B1,g1);
-       ss[i] = ss[i-2] + 2*h*func_primeS(II[i-1],ss[i-1],B1);
-       cout << II[i] << "," << i*0.01 << endl;
+       II1[i] = II1[i-2] + 2*h*func_primeI(II1[i-1],ss1[i-1],B1,g1);
+       ss1[i] = ss1[i-2] + 2*h*func_primeS(II1[i-1],ss1[i-1],B1);
+       cout << II1[i] << "," << i*0.01 << endl;
+
+     if(IM1 < II1[i]) {
+     IM1 = II1[i];
+     T1 = i*0.01;
+     }
+    
     
    }
 
+   //Arrays de ceros
+   double ss2[N];
+   double II2[N];
+   
+   for (int i = 0; i < N; i++) {
+       ss2[i] = 0;
+       II2[i] = 0;
+   }
 
+   II2[0] = I0;
+   ss1[0] = s0;
+
+   II2[1] = II2[0] + h*func_primeI(II1[0],ss2[0],B2,g2);
+   ss2[1] = ss2[0] + h*func_primeS(II1[0],ss2[0],B2);
+    double IM2 = 0;
+    double T2 = 0;
+   for (int i = 2; i < N; i++) {
+       II2[i] = II2[i-2] + 2*h*func_primeI(II2[i-1],ss2[i-1],B2,g2);
+       ss2[i] = ss2[i-2] + 2*h*func_primeS(II2[i-1],ss2[i-1],B2);
+       cout << II2[i] << "," << i*0.01 << endl;
+     if(IM2 < II2[i]) {
+     IM2 = II2[i];
+     T2 = i*0.01;
+     }
+    
+   }
+
+cout << "Caso 1, " << T1<< " Imax " << IM1 << endl;
+cout << "Caso 2, " << T2<< " Imax " << IM2 << endl;
 
    return 0;
 }
